@@ -1,0 +1,23 @@
+<div class="navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost text-primary text-2xl">
+      <img src={~p"/images/logo-md.png"} alt="Description" class="w-10"/>
+    </a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      <li><a>about me</a></li>
+      <li><a>blog</a></li>
+      <li><a>work</a></li>
+    </ul>
+  </div>
+</div>
+<main class="px-4 py-8 sm:px-6 lg:px-8 flex-grow">
+  <.flash_group flash={@flash} />
+  <%= @inner_content %>
+</main>
+<footer class="footer footer-center bg-base-300 text-base-content p-4">
+  <aside>
+    <p>Copyright © <%= current_year() %> - All right reserved by ACME Industries Ltd</p>
+  </aside>
+</footer>
