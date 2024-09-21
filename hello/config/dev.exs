@@ -2,9 +2,9 @@ import Config
 
 # Configure your database
 config :hello, Hello.Repo,
-  username: "postgres",
-  password: "",  # Leave this blank if you didn't set a password
-  hostname: "localhost",
+  username: System.get_env("DB_USERNAME") || "postgres",
+  password: System.get_env("DB_PASSWORD") || "",
+  hostname: System.get_env("DB_HOSTNAME") || "localhost",
   database: "personal_website_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
@@ -23,7 +23,7 @@ config :hello, HelloWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "YhIT/8Dxmetp/m+ak64x+3WuS/YklhwxEP+naodDu7TL9zoYazNkoP6vzYgiTZlZ",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:hello, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:hello, ~w(--watch)]}
@@ -83,3 +83,6 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+import_config "../.env.dev.exs"
+import_config "dev.secret.exs"
